@@ -40,8 +40,8 @@
 </header>
 
 <section class="stats wrap reveal" aria-label="Highlights">
-  <div><b>2+ yrs</b><span>at Apple, from Product Specialist to Technical Specialist to Face ID automation</span></div>
-  <div><b>Every PR</b><span>now runs the real tool in CI, without blocking merges</span></div>
+  <div><b>2+ yrs</b><span>at Apple, from Product Specialist to Technical Specialist to process automation</span></div>
+  <div><b>Every pull request</b><span>now replays recorded sessions in CI, without blocking merges</span></div>
   <div><b>4</b><span>Apple platforms troubleshot: iOS, watchOS, tvOS, visionOS</span></div>
 </section>
 
@@ -54,14 +54,15 @@
     <li class="reveal">
       <div class="when">Jun 2026 to now</div>
       <div class="what">
-        <h3>Software Engineer Intern, Face ID Process Automation</h3>
+        <h3>Software Engineer Intern, Process Automation</h3>
         <p class="meta">Apple · Cupertino, CA</p>
         <ul>
-          <li>Build and maintain a CI test stage that replays recorded sessions end to end on every pull request (90+ builds/week), catching regressions a compile check misses without blocking merges.</li>
-          <li>Use Claude Code, an agentic AI tool, to speed up scripting, log analysis, and pipeline debugging, and verify what it produces.</li>
-          <li>Create 16 automated test scenarios across multiple hardware configurations and write 5 new automated checks, merging each into the team's main codebase.</li>
-          <li>Extend the test-data conversion tooling to support a new hardware configuration, unblocking CI coverage for it.</li>
-          <li>Write Python that classifies authentication pass/fail outcomes from diagnostic logs, expanding test coverage.</li>
+          <li>Own an automated CI stage that replays recorded sessions end to end on every pull request (90+ builds/week), catching behavior changes a compile check misses without blocking merges.</li>
+          <li>Partner with Claude Code, an agentic AI tool, as an engineering multiplier to debug CI runs, triage verbose logs, review and write Python and Shell scripts, and build reusable skills for my workflow, verifying every output against real test runs.</li>
+          <li>Expand replay testing to three hardware configurations: record and grade 57 positive and negative test cases with 22 running in CI on every pull request.</li>
+          <li>Write 8 Python checks that read log fields to verify why an outcome happens, not just pass/fail, reading the source to confirm what each signal means before asserting on it.</li>
+          <li>Complete the capture-conversion tool's support for a new hardware configuration by fixing an inverted check in the C++ and verifying the conversion on 7 real captures, which unblocks CI coverage for that hardware.</li>
+          <li>Write Python and Shell scripts that classify outcomes from diagnostic logs into automated pass/fail with archived output, replacing manual log review; add retry with backoff for flaky test-data downloads.</li>
           <li>Run and validate test automation against device capture data using Shell, Xcode, and C++, and archive results for engineering review.</li>
           <li>Isolate root causes by tracing decision logic in verbose logs and confirming expected criteria with teammates, so fixes target the cause instead of the symptom.</li>
           <li>Built a test-data ingestion workflow that uploads captures at record time, backs up each set, and indexes it in a manifest, so no capture is lost and every run is reproducible.</li>
@@ -120,11 +121,11 @@
 
   <article class="card reveal">
     <h3>Non-blocking CI test stage for a pull-request pipeline</h3>
-    <p class="meta">Jenkins · Shell · C++ · Xcode</p>
+    <p class="meta">CI/CD · Shell · C++ · Xcode</p>
     <dl>
       <dt>Problem</dt><dd>The pipeline proved the code compiled, but never ran the built tool. Runtime regressions only showed up after merge.</dd>
-      <dt>What I did</dt><dd>Added a stage that downloads a sample recording, runs the freshly built binary against it, and archives the output on the build page. A failure marks the stage red without failing the PR.</dd>
-      <dt>Result</dt><dd>Every PR now exercises the real binary, and reviewers can inspect the artifacts directly from the build.</dd>
+      <dt>What I did</dt><dd>Added a stage that downloads a sample recording, runs the freshly built binary against it, and archives the output on the build page. A failure marks the stage red without failing the pull request.</dd>
+      <dt>Result</dt><dd>Every pull request now exercises the real binary, and reviewers can inspect the artifacts directly from the build.</dd>
     </dl>
   </article>
 
@@ -133,8 +134,8 @@
     <p class="meta">Python · log analysis · test automation</p>
     <dl>
       <dt>Problem</dt><dd>Deciding whether an authentication attempt passed, and how, meant reading logs by hand, which does not scale.</dd>
-      <dt>What I did</dt><dd>Wrote Python that parses the logs and classifies each outcome, then extended it to expand test coverage against captured device data.</dd>
-      <dt>Result</dt><dd>Wider automated coverage and consistent, repeatable verdicts instead of one-off manual reads.</dd>
+      <dt>What I did</dt><dd>Wrote Python that parses the logs and classifies each outcome, then grew it into checks that verify why an outcome happened, run against captured device data.</dd>
+      <dt>Result</dt><dd>Consistent, repeatable verdicts, with a check on the cause of each outcome, instead of one-off manual reads.</dd>
     </dl>
   </article>
 
@@ -145,6 +146,16 @@
       <dt>Problem</dt><dd>Test captures were being lost after recording, and weeks of work had to be redone.</dd>
       <dt>What I did</dt><dd>Moved to upload-at-capture, backed up each set, and wrote a manifest so every capture is named, findable, and traceable.</dd>
       <dt>Result</dt><dd>A reproducible capture set instead of a one-off folder, and a converter bug I surfaced along the way became mine to own and fix.</dd>
+    </dl>
+  </article>
+
+  <article class="card reveal">
+    <h3>Test coverage across three hardware configurations</h3>
+    <p class="meta">Python · Shell · C++ · replay testing · log analysis</p>
+    <dl>
+      <dt>Problem</dt><dd>Hardware configurations behave differently: different sensors, different pass thresholds, and some scenarios that only exist on some of them. A regression can hide on one while another stays green, and recordings from different sessions do not match each other.</dd>
+      <dt>What I did</dt><dd>Planned a scenario matrix and recorded each configuration in a single session, 57 negative and positive test cases in all. I replayed every recording the way CI does, graded it against that configuration's thresholds, and checked the path it took and the reason it failed, keeping only recordings that pass or fail for the intended reason.</dd>
+      <dt>Result</dt><dd>A graded recording set for each configuration, with 22 tests running in CI, plus a record of which scenarios do not apply to a given configuration, so coverage gaps are known instead of assumed.</dd>
     </dl>
   </article>
 </section>
@@ -187,7 +198,7 @@
     <dl>
       <dt>Problem</dt><dd>Rutgers Track &amp; Field bought apparel in small, reactive batches and leaned on costly emergency orders.</dd>
       <dt>What I did</dt><dd>Modeled size mix, replacement cycles and seasonal demand for an 84-athlete roster in Python, built an interactive dashboard, and presented the plan to Athletics leadership.</dd>
-      <dt>Result</dt><dd>A projected saving of about $8K a year (19%) and 40% fewer emergency orders. These are projections from the team's baseline budget plus an assumed bulk discount, and the athlete-level data is simulated; the dashboard says so.</dd>
+      <dt>Result</dt><dd>A projected saving of about $8.3K a year (from an assumed 19% bulk discount) and 40% fewer emergency orders. These are projections from the team's baseline budget plus an assumed bulk discount, and the athlete-level data is simulated; the dashboard says so.</dd>
     </dl>
     <p class="links">
       <a class="btn primary" href="https://github.com/kayla-damoah/track-inventory-optimization" target="_blank" rel="noopener">GitHub repo</a>
@@ -213,9 +224,9 @@
     <div class="row">
       <button class="btn primary" id="breakBtn">Break the new stage</button>
       <button class="btn" id="resetBtn">Reset</button>
-      <span class="badge good" id="prBadge">PR: can merge</span>
+      <span class="badge good" id="prBadge">Pull request: can merge</span>
     </div>
-    <p class="note" id="pipeNote">The new stage runs the freshly built tool against a sample recording on every PR.</p>
+    <p class="note" id="pipeNote">The new stage runs the freshly built tool against a sample recording on every pull request.</p>
   </article>
 
   <article class="card reveal">

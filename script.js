@@ -12,14 +12,14 @@ document.getElementById('breakBtn').onclick = () => {
   stage.className = 'stage fail';
   stage.innerHTML = 'Run tool on sample<small>failed</small>';
   badge.className = 'badge good';
-  badge.textContent = 'PR: can still merge';
+  badge.textContent = 'Pull request: can still merge';
   note.textContent = 'The stage is red and the artifacts are archived for inspection, but unrelated work keeps moving. Once the check proves reliable, it can become a gate.';
 };
 document.getElementById('resetBtn').onclick = () => {
   stage.className = 'stage soft';
   stage.innerHTML = 'Run tool on sample<small>non-blocking</small>';
-  badge.textContent = 'PR: can merge';
-  note.textContent = 'The new stage runs the freshly built tool against a sample recording on every PR.';
+  badge.textContent = 'Pull request: can merge';
+  note.textContent = 'The new stage runs the freshly built tool against a sample recording on every pull request.';
 };
 
 // Log classifier demo (all data is invented)
